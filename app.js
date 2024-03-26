@@ -1,9 +1,18 @@
 let characters;
 
 (async () => {
-  const charactersFetch = await API.getCharacters();
-  charactersFetch.forEach(addCharacterToTable);
-  characters = charactersFetch;
+  if (localStorage.getItem("characters") === null) {
+    localStorage.setItem("characters", JSON.stringify(await API.getCharacters()));
+  }
+
+  characters = await JSON.parse(localStorage.getItem("characters"));
+  //let characters = localStorage.getItem("characters");
+  //console.log(characters);
+  characters.forEach(addCharacterToTable);
+
+  // const charactersFetch = await API.getCharacters();
+  // charactersFetch.forEach(addCharacterToTable);
+  // characters = charactersFetch;
 })();
 
 const DOM_ELEMENT = {
