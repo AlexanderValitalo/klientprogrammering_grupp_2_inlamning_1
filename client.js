@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.sampleapis.com/futurama/";
+const BASE_URL = "https://da-demo.github.io/api/futurama/";
 
 const API_URLS = {
   characters: `${BASE_URL}characters`,

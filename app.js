@@ -54,10 +54,39 @@ function hideFirstPage() {
 function getRandomSayings(character) {
   const numberOfSayings = character.sayings.length;
 
-  if (numberOfSayings <= 5) {
-    let characterSayings = ""; //`<ul>`;
-    character.sayings.forEach((saying) => (characterSayings += `<p>${saying}</p>`));
-    //characterSayings += `</ul>`;
-    DOM_ELEMENT.characterPage.innerHTML += characterSayings;
+  let characterSayings;
+
+  if (numberOfSayings === 0) {
+    return;
+  } else if (numberOfSayings <= 5) {
+    let sayingText;
+    numberOfSayings === 1 ? (sayingText = "Saying:") : (sayingText = "Sayings:");
+    characterSayings = `
+                        <p>${sayingText}</p>
+                        <ul>`;
+    character.sayings.forEach((saying) => (characterSayings += `<li>${saying}</li>`));
+  } else if (numberOfSayings > 5) {
+    let randomizedSayings = randomizeArray(character.sayings);
+
+    characterSayings = `
+                       <p>Sayings:</p>
+                       <ul>`;
+    for (let i = 0; i < 5; i++) {
+      characterSayings += `<li>${randomizedSayings[i]}</li>`;
+    }
   }
+  characterSayings += `</ul>`;
+  DOM_ELEMENT.characterPage.innerHTML += characterSayings;
+}
+
+function randomizeArray(array) {
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
 }
