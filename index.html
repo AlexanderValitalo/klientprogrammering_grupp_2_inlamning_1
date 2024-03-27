@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Futurama</h1>
+    <h1 data-text="Futurama">Futurama</h1>
+    <div id="toggle-buttons">
+      <button id="characters-start">Characters</button>
+      <button id="episodes-start">Episodes</button>
+    </div>
 
+    <!------------------------------------------Characters-------------------------------------------------->
     <div id="first-page">
       <div id="character-header">
         <h2>Characters</h2>
@@ -24,48 +29,92 @@
           </tr>
         </table>
       </div>
-
-      <h2>Episodes</h2>
     </div>
-    
+
     <div id="character-page"></div>
 
     <div id="create-character-page">
       <h2>Create new Character</h2>
       <form action="" id="create-character-form">
-        <label for="character-first-name">First name:</label><br>
-        <input type="text" id="character-first-name" name="character-first-name" placeholder="Type first name here"><br>
+        <label for="character-first-name">First name:</label><br />
+        <input
+          type="text"
+          id="character-first-name"
+          name="character-first-name"
+          placeholder="Type first name here"
+        /><br />
 
-        <label for="character-middle-name">Middle name:</label><br>
-        <input type="text" id="character-middle-name" name="character-middle-name" placeholder="Type middle name here"><br>
+        <label for="character-middle-name">Middle name:</label><br />
+        <input
+          type="text"
+          id="character-middle-name"
+          name="character-middle-name"
+          placeholder="Type middle name here"
+        /><br />
 
-        <label for="character-last-name">Last name:</label><br>
-        <input type="text" id="character-last-name" name="character-last-name" placeholder="Type last name here"><br>
-        
-        <label for="character-homePlanet">Home planet:</label><br>
-        <input type="text" id="character-homePlanet" name="character-homePlanet" placeholder="Type home planet here"><br>
-        <input type="submit" value="Create character">
+        <label for="character-last-name">Last name:</label><br />
+        <input
+          type="text"
+          id="character-last-name"
+          name="character-last-name"
+          placeholder="Type last name here"
+        /><br />
+
+        <label for="character-homePlanet">Home planet:</label><br />
+        <input
+          type="text"
+          id="character-homePlanet"
+          name="character-homePlanet"
+          placeholder="Type home planet here"
+        /><br />
+        <button type="submit" class="submit-button">Create character</button>
       </form>
-      <button id="character-create-back-button" class="back-button">Back to main page</button>
+      <button id="character-create-back-button" class="back-button">
+        Back to main page
+      </button>
     </div>
-    
+
     <div id="update-character-page">
       <h2>Update Character</h2>
-      <form action="" id="update-character-form">
-        <label for="update-first-name">First name:</label><br>
-        <input type="text" id="update-first-name" name="update-first-name" placeholder="Type first name here"><br>
+      <div id="update-character-div">
+        <form action="" id="update-character-form">
+          <label for="update-first-name">First name:</label><br />
+          <input
+            type="text"
+            id="update-first-name"
+            name="update-first-name"
+            placeholder="Type first name here"
+          /><br />
 
-        <label for="update-middle-name">Middle name:</label><br>
-        <input type="text" id="update-middle-name" name="update-middle-name" placeholder="Type middle name here"><br>
+          <label for="update-middle-name">Middle name:</label><br />
+          <input
+            type="text"
+            id="update-middle-name"
+            name="update-middle-name"
+            placeholder="Type middle name here"
+          /><br />
 
-        <label for="update-last-name">Last name:</label><br>
-        <input type="text" id="update-last-name" name="update-last-name" placeholder="Type last name here"><br>
+          <label for="update-last-name">Last name:</label><br />
+          <input
+            type="text"
+            id="update-last-name"
+            name="update-last-name"
+            placeholder="Type last name here"
+          /><br />
 
-        <label for="update-homePlanet">Home planet:</label><br>
-        <input type="text" id="update-homePlanet" name="update-homePlanet" placeholder="Type home planet here"><br>
-        <input type="submit" value="Update character">
-      </form>
-      <button id="update-character-back-button" class="back-button">Back to character</button>
+          <label for="update-homePlanet">Home planet:</label><br />
+          <input
+            type="text"
+            id="update-homePlanet"
+            name="update-homePlanet"
+            placeholder="Type home planet here"
+          /><br />
+          <button type="submit" class="submit-button">Update character</button>
+        </form>
+        <button id="update-character-back-button" class="back-button">
+          Back to character
+        </button>
+      </div>
     </div>
 
     <div id="delete-character-page">
@@ -74,8 +123,109 @@
       <button id="delete-character-button">Delete</button>
       <button id="delete-character-back-button">Back to character</button>
     </div>
+    <!------------------------------------------/Characters-------------------------------------------------->
 
+    <!--------------------------------------------Episodes--------------------------------------------------->
+    <div id="second-page">
+      <div id="episode-header">
+        <h2>Episodes</h2>
+        <button id="create-episode-btn">Create new episode</button>
+      </div>
+      <div id="episodes">
+        <table id="episodes-table">
+          <tr>
+            <th>Title</th>
+            <th>Season</th>
+            <th>Episode</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="episode-page"></div>
+
+    <div id="create-episode-page">
+      <h2>Create new Episode</h2>
+      <form action="" id="create-episode-form">
+        <label for="title">Title:</label><br />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Type title here"
+        /><br />
+
+        <label for="season">Season:</label><br />
+        <input
+          type="number"
+          id="season"
+          name="season"
+          placeholder="Type season number here"
+        /><br />
+
+        <label for="episode">Episode:</label><br />
+        <input
+          type="number"
+          id="episode"
+          name="episode"
+          placeholder="Type episode number here"
+        /><br />
+        <button type="submit" class="submit-button">Create episode</button>
+      </form>
+      <button id="episode-create-back-button" class="back-button">
+        Back to main page
+      </button>
+    </div>
+
+    <div id="update-episode-page">
+      <h2>Update Episode</h2>
+      <div id="update-episode-div">
+        <form action="" id="update-episode-form">
+          <label for="update-title">Title:</label><br />
+          <input
+            type="text"
+            id="update-title"
+            name="update-title"
+            placeholder="Type title here"
+          /><br />
+
+          <label for="update-season">Season:</label><br />
+          <input
+            type="number"
+            id="update-season"
+            name="update-season"
+            placeholder="Type season number here"
+          /><br />
+
+          <label for="update-episode">Episode:</label><br />
+          <input
+            type="number"
+            id="update-episode"
+            name="update-episode"
+            placeholder="Type episode number here"
+          /><br />
+
+          <button type="submit" class="submit-button">Update episode</button>
+        </form>
+        <button id="update-episode-back-button" class="back-button">
+          Back to episode
+        </button>
+      </div>
+    </div>
+
+    <div id="delete-episode-page">
+      <h2>Delete Episode</h2>
+      <h3>Are you sure you want to delete this episode?</h3>
+      <button id="delete-episode-button">Delete</button>
+      <button id="delete-episode-back-button">Back to episode</button>
+    </div>
+    <!--------------------------------------------/Episodes-------------------------------------------------->
+
+    <script src="dom-elements.js"></script>
     <script src="client.js"></script>
-    <script src="app.js"></script>
+    <script src="character.js"></script>
+    <script src="episode.js"></script>
+    <script src="toggle.js"></script>
   </body>
 </html>
