@@ -53,7 +53,7 @@ function displayCharacter(character) {
   <img src="${
     character.images.main
   }" alt="A picture of ${displayName}" style="${
-    character.images.main === undefined ? "display: none;" : "display: block;"
+    character.images.main === undefined ? "display: none;" : "display: flex;"
   }">
   <p>Home planet: ${character.homePlanet}</p>
   <p>Occupation: ${
@@ -71,14 +71,15 @@ function hideFirstPage() {
   DOM_ELEMENT.firstPage.style.display = "none";
 }
 
-// If character sayings is 0 then return,
-//else if character sayings is 5 or lower return all sayings,
-//else if character sayings is greater than 5 randomize the sayings order and display the first 5 sayings
+//Randomize and display 5 character sayings (or all sayings, if there are fewer than 5)
 function getRandomSayings(character) {
   const numberOfSayings = character.sayings.length;
 
   let characterSayings;
 
+  // If character sayings is 0 then return,
+  //else if character sayings is 5 or lower display all sayings,
+  //else if character sayings is greater than 5 randomize the sayings order and display the first 5 sayings
   if (numberOfSayings === 0) {
     return;
   } else if (numberOfSayings <= 5) {
@@ -110,6 +111,8 @@ function getRandomSayings(character) {
 function randomizeArray(array) {
   let currentIndex = array.length;
 
+  // start from the last element to the first element
+  // the randomized index element swaps place with the current index element
   while (currentIndex != 0) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
@@ -122,25 +125,46 @@ function randomizeArray(array) {
   return array;
 }
 
-//
+//Create buttons and CRUD functions on character
 function characterCRUDButtons(character) {
   const buttonDiv = document.createElement("div");
   DOM_ELEMENT.characterPage.appendChild(buttonDiv);
 
+  const editCharacterButton = createEditCharacterButton(character);
+  buttonDiv.appendChild(editCharacterButton);
+
+  const characterDeleteButton = createCharacterDeleteButton(
+    character,
+    buttonDiv
+  );
+  buttonDiv.appendChild(characterDeleteButton);
+
+  const backButton = goBackToMainPageFromCharacterPage();
+  buttonDiv.appendChild(backButton);
+}
+
+//******************************************************Character Button functions*************************************************************************/
+//Creates the "Edit character" button that displays the update form
+function createEditCharacterButton(character) {
   const editCharacterButton = document.createElement("button");
   editCharacterButton.textContent = "Edit Character";
   editCharacterButton.classList.add("edit-button");
   editCharacterButton.addEventListener("click", () => {
     DOM_ELEMENT.characterPage.style.display = "none";
-    DOM_ELEMENT.updateCharacterPage.style.display = "block";
+    DOM_ELEMENT.updateCharacterPage.style.display = "flex";
     DOM_ELEMENT.updateFirstName.value = character.name.first;
     DOM_ELEMENT.updateMiddleName.value = character.name.middle;
     DOM_ELEMENT.updateLastName.value = character.name.last;
     DOM_ELEMENT.updateHomePlanet.value = character.homePlanet;
+    updateCharacter(character);
+    goBackToCharacterPageFromUpdateCharacter();
   });
 
-  buttonDiv.appendChild(editCharacterButton);
+  return editCharacterButton;
+}
 
+// Updates character when "Edit character" form is submitted
+function updateCharacter(character) {
   DOM_ELEMENT.updateCharacterForm.addEventListener("submit", () => {
     character.name.first = DOM_ELEMENT.updateFirstName.value;
     character.name.middle = DOM_ELEMENT.updateMiddleName.value;
@@ -149,22 +173,33 @@ function characterCRUDButtons(character) {
 
     localStorage.setItem("characters", JSON.stringify(characters));
   });
+}
 
+// Go back from update character to character page
+function goBackToCharacterPageFromUpdateCharacter() {
   DOM_ELEMENT.updateCharacterBackButton.addEventListener("click", () => {
     DOM_ELEMENT.updateCharacterPage.style.display = "none";
-    DOM_ELEMENT.characterPage.style.display = "block";
+    DOM_ELEMENT.characterPage.style.display = "flex";
   });
+}
 
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete Character";
-  deleteButton.classList.add("delete-button");
-  deleteButton.addEventListener("click", () => {
-    DOM_ELEMENT.deleteCharacterPage.style.display = "block";
+// Create character delete button that opens delete page
+function createCharacterDeleteButton(character, buttonDiv) {
+  const deleteCharacterButton = document.createElement("button");
+  deleteCharacterButton.textContent = "Delete Character";
+  deleteCharacterButton.classList.add("delete-button");
+  deleteCharacterButton.addEventListener("click", () => {
+    DOM_ELEMENT.deleteCharacterPage.style.display = "flex";
     buttonDiv.style.display = "none";
+    deleteCharacter(character);
+    goBackToCharacterPageFromDeleteCharacter(buttonDiv);
   });
 
-  buttonDiv.appendChild(deleteButton);
+  return deleteCharacterButton;
+}
 
+//Deletes character when "Delete" button is clicked
+function deleteCharacter(character) {
   DOM_ELEMENT.deleteCharacterButton.addEventListener("click", () => {
     let indexToDelete = characters.findIndex((c) => c.id === character.id);
     characters.splice(indexToDelete, 1);
@@ -172,12 +207,18 @@ function characterCRUDButtons(character) {
     localStorage.setItem("characters", JSON.stringify(characters));
     location.reload();
   });
+}
 
+//"Back to character" button on delete popup: returns to character page
+function goBackToCharacterPageFromDeleteCharacter(buttonDiv) {
   DOM_ELEMENT.deleteCharacterBackButton.addEventListener("click", () => {
     DOM_ELEMENT.deleteCharacterPage.style.display = "none";
-    buttonDiv.style.display = "block";
+    buttonDiv.style.display = "flex";
   });
+}
 
+//"Back to main page" button on character page: returns user to first page when clicked
+function goBackToMainPageFromCharacterPage() {
   const backButton = document.createElement("button");
   backButton.textContent = "Back to main page";
   backButton.classList.add("back-button");
@@ -185,25 +226,25 @@ function characterCRUDButtons(character) {
     showFirstPage();
   });
 
-  buttonDiv.appendChild(backButton);
+  return backButton;
 }
+//******************************************************/Character Button functions*************************************************************************/
 
-function createEditCharacterButton() {
-  //**************************************************************************************** */
-}
-
+//Display main page
 function showFirstPage() {
-  DOM_ELEMENT.firstPage.style.display = "block";
+  DOM_ELEMENT.firstPage.style.display = "flex";
   DOM_ELEMENT.createCharacterPage.style.display = "none";
   DOM_ELEMENT.characterPage.innerHTML = "";
 }
 
-//******************************************************Global character event listeners*************************************************************************/
+//******************************************************Global character event listeners********************************************************************/
+//"Create character" button: displays form
 DOM_ELEMENT.createCharacterButton.addEventListener("click", () => {
   hideFirstPage();
-  DOM_ELEMENT.createCharacterPage.style.display = "block";
+  DOM_ELEMENT.createCharacterPage.style.display = "flex";
 });
 
+//"Create character" form: creates a new character
 DOM_ELEMENT.characterCreateForm.addEventListener("submit", async () => {
   const newFirstName = DOM_ELEMENT.characterFirstName.value; //lägg till eventuell säkerhet här senare
   const newMiddleName = DOM_ELEMENT.characterMiddleName.value;
@@ -225,7 +266,8 @@ DOM_ELEMENT.characterCreateForm.addEventListener("submit", async () => {
   localStorage.setItem("characters", JSON.stringify(characters));
 });
 
+//"Back to main page" button on "Create new character" page: displays first page
 DOM_ELEMENT.characterCreateBackButton.addEventListener("click", () => {
   showFirstPage();
 });
-//******************************************************/Global character event listeners************************************************************************/
+//******************************************************/Global character event listeners*******************************************************************/

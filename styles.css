@@ -1,21 +1,27 @@
+/* Generell stil för hela sidan */
 body {
-  font-family: "Arial", sans-serif; /* Typsnitt som liknar Futurama */
+  font-family: "Arial", sans-serif;
   background-color: #f0f0f0;
   color: #333;
   margin: 0;
   padding: 0;
 }
 
+/* Stil för rubriker */
 h1 {
   text-align: center;
   margin-top: 20px;
   font-size: 36px;
 }
 
+/* Stil för första sidan */
 #first-page {
+  display: flex;
+  flex-direction: column;
   margin-top: 30px;
 }
 
+/* Stil för karaktärshuvudet */
 #character-header {
   display: flex;
   justify-content: space-between;
@@ -23,12 +29,14 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Stil för rubriken "Characters" */
 #character-header h2 {
   font-size: 24px;
 }
 
+/* Stil för knappar */
 button {
-  padding: 10px 20px;
+  padding: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -37,6 +45,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
+/* Stil för tabeller */
 button:hover {
   background-color: #0056b3;
 }
@@ -57,20 +66,146 @@ th {
   background-color: #f2f2f2;
 }
 
+/* Stil för sista kolumnen i tabellen */
 #characters-table th:last-child,
 #characters-table td:last-child {
   text-align: center;
 }
 
-#character-page img {
-  max-width: 200px;
+/* Stil för sidan för att skapa karaktärer */
+#create-character-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stil för rubriken på sidan för att skapa karaktärer */
+#create-character-page h2 {
+  margin-bottom: 20px;
+}
+
+/* Stil för formuläret på sidan för att skapa karaktärer */
+#create-character-page form {
+  margin-bottom: 20px;
+}
+
+/* Stil för etiketterna i formuläret på sidan för att skapa karaktärer */
+#create-character-page form label {
+  margin-bottom: 5px;
+}
+
+/* Stil för inputfälten i formuläret på sidan för att skapa karaktärer */
+#create-character-page form input {
+  width: 100%;
+  padding: 10px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Stil för skapaknappen på sidan för att skapa karaktärer */
+#create-character-page form button.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
+#create-character-page button.back-button {
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#create-character-page button.back-button:hover {
+  background-color: #999;
+}
+
+#character-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#character-page h2 {
+  margin-bottom: 10px;
+}
+
+#character-page img {
+  max-width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#character-page p {
+  margin-bottom: 5px;
+}
+
+#character-page ul {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#character-page button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#character-page button:hover {
+  background-color: #0056b3;
 }
 
 .edit-button,
 .delete-button,
 .back-button {
   margin-top: 20px;
+  margin-right: 20px;
+}
+
+#character-page button.delete-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#character-page button.delete-button:hover {
+  background-color: #cc0000;
 }
 
 #create-character-page,
@@ -80,13 +215,18 @@ th {
 }
 
 #delete-character-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   width: 80%;
-  max-width: 400px; /* Justera bredden efter dina preferenser */
+  max-width: 600px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
@@ -100,25 +240,79 @@ th {
   margin-bottom: 20px;
 }
 
-#delete-character-page {
-  position: fixed; /* Positionerar elementet relativt till fönstret */
-  top: 50%; /* Placerar toppen av elementet mitt på sidan */
-  left: 50%; /* Placerar vänsterkanten av elementet mitt på sidan */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Centrerar elementet både vertikalt och horisontellt */
-  z-index: 9999; /* Säkerställer att det ligger över andra element */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 80%;
-  max-width: 400px; /* Justera bredden efter dina preferenser */
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+#delete-character-page button#delete-character-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
-#delete-character-page button:hover {
-  background-color: #cc0000; /* Mörkare röd färg vid hover */
+#delete-character-page button#delete-character-button:hover {
+  background-color: #cc0000;
+}
+
+#update-character-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#update-character-page h2 {
+  margin-bottom: 20px;
+}
+
+#update-character-page form {
+  margin-bottom: 20px;
+}
+
+#update-character-page form label {
+  margin-bottom: 5px;
+}
+
+#update-character-page form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#update-character-page form button.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-character-page form button.submit-button:hover {
+  background-color: #0056b3;
+}
+
+#update-character-page button.back-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-character-page button.back-button:hover {
+  background-color: #007bff;
+  color: #fff;
 }
