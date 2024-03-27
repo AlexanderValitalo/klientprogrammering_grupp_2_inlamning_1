@@ -14,11 +14,46 @@ h1 {
   font-size: 36px;
 }
 
+/* Stil för knappar */
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Stil för knappar i toggle-buttons */
+#toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#toggle-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#toggle-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/*---------------------------------------------------------First Page Characters----------------------------------------------------------*/
+
 /* Stil för första sidan */
 #first-page {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin: 30px;
 }
 
 /* Stil för karaktärshuvudet */
@@ -32,17 +67,6 @@ h1 {
 /* Stil för rubriken "Characters" */
 #character-header h2 {
   font-size: 24px;
-}
-
-/* Stil för knappar */
-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 /* Stil för tabeller */
@@ -74,7 +98,6 @@ th {
 
 /* Stil för sidan för att skapa karaktärer */
 #create-character-page {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -138,7 +161,6 @@ th {
 }
 
 #character-page {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -190,7 +212,6 @@ th {
 .delete-button,
 .back-button {
   margin-top: 20px;
-  margin-right: 20px;
 }
 
 #character-page button.delete-button {
@@ -206,12 +227,6 @@ th {
 
 #character-page button.delete-button:hover {
   background-color: #cc0000;
-}
-
-#create-character-page,
-#update-character-page,
-#delete-character-page {
-  display: none;
 }
 
 #delete-character-page {
@@ -315,4 +330,99 @@ th {
 #update-character-page button.back-button:hover {
   background-color: #007bff;
   color: #fff;
+}
+
+/*---------------------------------------------------------Second Page Episodes----------------------------------------------------------*/
+
+/* Stil för andra sidan */
+#second-page {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+/* Stil för episodhuvudet */
+#episode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Stil för rubriken "Episodes" */
+#episode-header h2 {
+  font-size: 24px;
+}
+
+/* Stil för knappen "Create new episode" */
+#create-episode-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#create-episode-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Stil för tabeller */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Stil för sista kolumnen i tabellen */
+#episodes-table th:last-child,
+#episodes-table td:last-child {
+  text-align: center;
+}
+
+#episode-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stil för sidan för att skapa karaktärer */
+#create-episode-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#create-character-page,
+#update-character-page,
+#delete-character-page,
+#character-page,
+#second-page {
+  display: none;
 }
