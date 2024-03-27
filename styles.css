@@ -1,3 +1,124 @@
-#create-character-page, #update-character-page, #delete-character-page {
-    display: none;
+body {
+  font-family: "Arial", sans-serif; /* Typsnitt som liknar Futurama */
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 36px;
+}
+
+#first-page {
+  margin-top: 30px;
+}
+
+#character-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#character-header h2 {
+  font-size: 24px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+#characters-table th:last-child,
+#characters-table td:last-child {
+  text-align: center;
+}
+
+#character-page img {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.edit-button,
+.delete-button,
+.back-button {
+  margin-top: 20px;
+}
+
+#create-character-page,
+#update-character-page,
+#delete-character-page {
+  display: none;
+}
+
+#delete-character-page {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 400px; /* Justera bredden efter dina preferenser */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+#delete-character-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#delete-character-page h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#delete-character-page {
+  position: fixed; /* Positionerar elementet relativt till fönstret */
+  top: 50%; /* Placerar toppen av elementet mitt på sidan */
+  left: 50%; /* Placerar vänsterkanten av elementet mitt på sidan */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centrerar elementet både vertikalt och horisontellt */
+  z-index: 9999; /* Säkerställer att det ligger över andra element */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 400px; /* Justera bredden efter dina preferenser */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+#delete-character-page button:hover {
+  background-color: #cc0000; /* Mörkare röd färg vid hover */
 }
