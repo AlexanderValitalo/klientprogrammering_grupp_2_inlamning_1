@@ -12,7 +12,7 @@ body {
 h1 {
   text-align: center;
   margin-top: 20px;
-  font-size: 36px;
+  font-size: 50px;
 }
 
 /* Stil för knappar */
@@ -36,7 +36,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-.episode-info-btn button:hover {
+.episode-info-btn:hover {
   background-color: #007a5e;
 }
 
@@ -75,7 +75,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-#toggle-buttons > #episodes-start button:hover {
+#toggle-buttons > #episodes-start:hover {
   background-color: #007a5e;
 }
 
@@ -252,16 +252,17 @@ th {
 /* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
 #create-character-page button.back-button {
   padding: 10px 20px;
-  background-color: #ccc;
-  color: #333;
-  border: none;
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #create-character-page button.back-button:hover {
-  background-color: #999;
+  background-color: #007bff;
+  color: #fff;
 }
 
 /*---------------------------------------------------------First Page Update Character----------------------------------------------------------*/
@@ -332,6 +333,8 @@ th {
 
 #delete-character-page {
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -365,7 +368,7 @@ th {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 #delete-character-page button#delete-character-button:hover {
@@ -556,16 +559,17 @@ th {
 /* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
 #create-episode-page button.back-button {
   padding: 10px 20px;
-  background-color: #ccc;
-  color: #333;
-  border: none;
+  background-color: transparent;
+  color: #00cc99;
+  border: 1px solid #00cc99;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #create-episode-page button.back-button:hover {
-  background-color: #999;
+  background-color: #00cc99;
+  color: #fff;
 }
 
 /*---------------------------------------------------------Second Page Update Episode----------------------------------------------------------*/
@@ -635,6 +639,9 @@ th {
 /*---------------------------------------------------------Second Page Delete Episode----------------------------------------------------------*/
 
 #delete-episode-page {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -668,11 +675,26 @@ th {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 #delete-episode-page button#delete-episode-button:hover {
   background-color: #cc0000;
+}
+
+#delete-episode-page > #delete-episode-back-button {
+  padding: 10px 20px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#delete-episode-page > #delete-episode-back-button:hover {
+  background-color: #007a5e;
+  color: #fff;
 }
 
 /*---------------------------------------------------------Display Page None----------------------------------------------------------*/

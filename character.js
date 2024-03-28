@@ -5,7 +5,10 @@ let characters; // Holds all current characters locally
 // After that we build the table and populate it with the characters
 (async () => {
   if (localStorage.getItem("characters") === null) {
-    localStorage.setItem("characters", JSON.stringify(await API.getCharacters()));
+    localStorage.setItem(
+      "characters",
+      JSON.stringify(await API.getCharacters())
+    );
   }
 
   characters = await JSON.parse(localStorage.getItem("characters"));
@@ -27,9 +30,9 @@ function addCharacterToTable(character) {
 
   DOM_ELEMENT.characterContainer.appendChild(characterRow);
 
-  const tempButton = document.getElementById(`characterButton${character.id}`);
+  const infoButton = document.getElementById(`characterButton${character.id}`);
 
-  tempButton.addEventListener("click", () => {
+  infoButton.addEventListener("click", () => {
     displayCharacter(character);
   });
 }
@@ -48,11 +51,15 @@ function displayCharacter(character) {
 
   DOM_ELEMENT.characterPage.innerHTML = `
   <h2>${displayName}</h2>
-  <img src="${character.images.main}" alt="A picture of ${displayName}" style="${
+  <img src="${
+    character.images.main
+  }" alt="A picture of ${displayName}" style="${
     character.images.main === undefined ? "display: none;" : "display: flex;"
   }">
   <p>Home planet: ${character.homePlanet}</p>
-  <p>Occupation: ${character.occupation === "" ? "Unknown" : character.occupation}</p>
+  <p>Occupation: ${
+    character.occupation === "" ? "Unknown" : character.occupation
+  }</p>
   `;
 
   getRandomSayings(character);
@@ -80,11 +87,15 @@ function getRandomSayings(character) {
     return;
   } else if (numberOfSayingsOnCharacter <= sayingsToDisplay) {
     let sayingText;
-    numberOfSayingsOnCharacter === 1 ? (sayingText = "Saying:") : (sayingText = "Sayings:");
+    numberOfSayingsOnCharacter === 1
+      ? (sayingText = "Saying:")
+      : (sayingText = "Sayings:");
     characterSayings = `
                         <p>${sayingText}</p>
                         <ul>`;
-    character.sayings.forEach((saying) => (characterSayings += `<li>${saying}</li>`));
+    character.sayings.forEach(
+      (saying) => (characterSayings += `<li>${saying}</li>`)
+    );
   } else if (numberOfSayingsOnCharacter > sayingsToDisplay) {
     let randomizedSayings = randomizeArray(character.sayings);
 
@@ -109,7 +120,10 @@ function randomizeArray(array) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
   return array;
 }
@@ -122,7 +136,10 @@ function characterCRUDButtons(character) {
   const editCharacterButton = createEditCharacterButton(character);
   buttonDiv.appendChild(editCharacterButton);
 
-  const characterDeleteButton = createCharacterDeleteButton(character, buttonDiv);
+  const characterDeleteButton = createCharacterDeleteButton(
+    character,
+    buttonDiv
+  );
   buttonDiv.appendChild(characterDeleteButton);
 
   const backButton = goBackToMainPageFromCharacterPage();
