@@ -13,6 +13,7 @@ let episodes; // Holds all current episodes locally
     calcOverAllNumber();
     sortEpisodes();
     calcSeasonNumber();
+    calcEpisodeNumber();
   } else {
     episodes = await JSON.parse(localStorage.getItem("episodes"));
   }
@@ -20,12 +21,14 @@ let episodes; // Holds all current episodes locally
   episodes.forEach(addEpisodeToTable);
 })();
 
+//Split out the overall episode number from episode.number and assign it its own property
 function calcOverAllNumber() {
   for (const episode of episodes) {
     episode.overAllEpisodeNumber = Number(episode.number.split(" - ")[0]);
   }
 }
 
+//Sort episodes by overall episode number
 function sortEpisodes() {
   let currentIndex = episodes.length;
 
@@ -33,7 +36,8 @@ function sortEpisodes() {
     currentIndex--;
 
     if (
-      episodes[currentIndex].overAllEpisodeNumber < episodes[currentIndex - 1].overAllEpisodeNumber
+      episodes[currentIndex].overAllEpisodeNumber <
+      episodes[currentIndex - 1].overAllEpisodeNumber
     ) {
       [episodes[currentIndex], episodes[currentIndex - 1]] = [
         episodes[currentIndex - 1],
@@ -43,15 +47,7 @@ function sortEpisodes() {
   }
 }
 
-//Calculates the season number based on episode number
-// function calcSeasonNumber(episode) {
-//   const firstNumber = Number(episode.number.split(" - ")[0]);
-//   const season = Math.ceil(firstNumber / 10);
-//   episode.season = season;
-
-//   return episode;
-// }
-
+//Calculate season number on each episode and assign it its own property
 function calcSeasonNumber() {
   let season = 0;
   for (const episode of episodes) {
@@ -64,12 +60,17 @@ function calcSeasonNumber() {
   }
 }
 
+//Split out the episode number from the "number" property on the episodes
+//and assign it to the seasonEpisode property
+function calcEpisodeNumber() {
+  for (const episode of episodes) {
+    episode.seasonEpisode = Number(episode.number.split(" - ")[1]);
+  }
+}
+
 //Create a new episode table row
 function addEpisodeToTable(episode) {
   const episodeRow = document.createElement("tr");
-
-  //episode = calcSeasonNumber(episode);
-  episode = calcEpisodeNumber(episode);
 
   episodeRow.innerHTML = `
                         <td>${episode.title}</td>
@@ -80,18 +81,11 @@ function addEpisodeToTable(episode) {
 
   DOM_ELEMENT.episodeContainer.appendChild(episodeRow);
 
-  const tempButton = document.getElementById(`episodeButton${episode.id}`);
+  const infoButton = document.getElementById(`episodeButton${episode.id}`);
 
-  tempButton.addEventListener("click", () => {
+  infoButton.addEventListener("click", () => {
     displayEpisode(episode);
   });
-}
-
-//Split out the episode number
-function calcEpisodeNumber(episode) {
-  episode.seasonEpisode = Number(episode.number.split(" - ")[1]);
-
-  return episode;
 }
 
 // Displays episode page
@@ -239,7 +233,8 @@ function createEpisode() {
     const newTitle = DOM_ELEMENT.episodeTitle.value; //lägg till eventuell säkerhet här senare
     const newSeason = DOM_ELEMENT.episodeSeason.value;
     const newEpisodeNumber = DOM_ELEMENT.episodeNumber.value;
-    const newOverAllEpisodeNumber = episodes[episodes.length - 1].overAllEpisodeNumber + 1;
+    const newOverAllEpisodeNumber =
+      episodes[episodes.length - 1].overAllEpisodeNumber + 1;
 
     const newEpisode = {
       desc: "",
