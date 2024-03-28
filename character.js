@@ -5,10 +5,7 @@ let characters; // Holds all current characters locally
 // After that we build the table and populate it with the characters
 (async () => {
   if (localStorage.getItem("characters") === null) {
-    localStorage.setItem(
-      "characters",
-      JSON.stringify(await API.getCharacters())
-    );
+    localStorage.setItem("characters", JSON.stringify(await API.getCharacters()));
   }
 
   characters = await JSON.parse(localStorage.getItem("characters"));
@@ -51,15 +48,11 @@ function displayCharacter(character) {
 
   DOM_ELEMENT.characterPage.innerHTML = `
   <h2>${displayName}</h2>
-  <img src="${
-    character.images.main
-  }" alt="A picture of ${displayName}" style="${
+  <img src="${character.images.main}" alt="A picture of ${displayName}" style="${
     character.images.main === undefined ? "display: none;" : "display: flex;"
   }">
   <p>Home planet: ${character.homePlanet}</p>
-  <p>Occupation: ${
-    character.occupation === "" ? "Unknown" : character.occupation
-  }</p>
+  <p>Occupation: ${character.occupation === "" ? "Unknown" : character.occupation}</p>
   `;
 
   getRandomSayings(character);
@@ -87,15 +80,11 @@ function getRandomSayings(character) {
     return;
   } else if (numberOfSayingsOnCharacter <= sayingsToDisplay) {
     let sayingText;
-    numberOfSayingsOnCharacter === 1
-      ? (sayingText = "Saying:")
-      : (sayingText = "Sayings:");
+    numberOfSayingsOnCharacter === 1 ? (sayingText = "Saying:") : (sayingText = "Sayings:");
     characterSayings = `
                         <p>${sayingText}</p>
                         <ul>`;
-    character.sayings.forEach(
-      (saying) => (characterSayings += `<li>${saying}</li>`)
-    );
+    character.sayings.forEach((saying) => (characterSayings += `<li>${saying}</li>`));
   } else if (numberOfSayingsOnCharacter > sayingsToDisplay) {
     let randomizedSayings = randomizeArray(character.sayings);
 
@@ -120,10 +109,7 @@ function randomizeArray(array) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
 }
@@ -136,10 +122,7 @@ function characterCRUDButtons(character) {
   const editCharacterButton = createEditCharacterButton(character);
   buttonDiv.appendChild(editCharacterButton);
 
-  const characterDeleteButton = createCharacterDeleteButton(
-    character,
-    buttonDiv
-  );
+  const characterDeleteButton = createCharacterDeleteButton(character, buttonDiv);
   buttonDiv.appendChild(characterDeleteButton);
 
   const backButton = goBackToMainPageFromCharacterPage();
@@ -155,10 +138,6 @@ function createEditCharacterButton(character) {
   editCharacterButton.addEventListener("click", () => {
     DOM_ELEMENT.characterPage.style.display = "none";
     DOM_ELEMENT.updateCharacterPage.style.display = "flex";
-    DOM_ELEMENT.updateFirstName.value = character.name.first;
-    DOM_ELEMENT.updateMiddleName.value = character.name.middle;
-    DOM_ELEMENT.updateLastName.value = character.name.last;
-    DOM_ELEMENT.updateHomePlanet.value = character.homePlanet;
     updateCharacter(character);
     goBackToCharacterPageFromUpdateCharacter();
   });
@@ -166,13 +145,57 @@ function createEditCharacterButton(character) {
   return editCharacterButton;
 }
 
-// Updates character when "Edit character" form is submitted
+// Builds "Edit character" form and updates character
 function updateCharacter(character) {
-  DOM_ELEMENT.updateCharacterForm.addEventListener("submit", () => {
-    character.name.first = DOM_ELEMENT.updateFirstName.value;
-    character.name.middle = DOM_ELEMENT.updateMiddleName.value;
-    character.name.last = DOM_ELEMENT.updateLastName.value;
-    character.homePlanet = DOM_ELEMENT.updateHomePlanet.value;
+  const updateCharacterForm = document.createElement("form");
+  updateCharacterForm.setAttribute("id", "update-character-form");
+  updateCharacterForm.innerHTML = `
+                                <label for="update-first-name">First name:</label><br />
+                                <input
+                                  type="text"
+                                  id="update-first-name"
+                                  name="update-first-name"
+                                  placeholder="Type first name here"
+                                /><br />
+
+                                <label for="update-middle-name">Middle name:</label><br />
+                                <input
+                                  type="text"
+                                  id="update-middle-name"
+                                  name="update-middle-name"
+                                  placeholder="Type middle name here"
+                                /><br />
+
+                                <label for="update-last-name">Last name:</label><br />
+                                <input
+                                  type="text"
+                                  id="update-last-name"
+                                  name="update-last-name"
+                                  placeholder="Type last name here"
+                                /><br />
+
+                                <label for="update-homePlanet">Home planet:</label><br />
+                                <input
+                                  type="text"
+                                  id="update-homePlanet"
+                                  name="update-homePlanet"
+                                  placeholder="Type home planet here"
+                                /><br />
+                                <button type="submit" class="submit-button">Update character</button>
+                                `;
+
+  DOM_ELEMENT.updateCharacterFormDiv.appendChild(updateCharacterForm);
+
+  document.getElementById("update-first-name").value = character.name.first;
+  document.getElementById("update-middle-name").value = character.name.middle;
+  document.getElementById("update-last-name").value = character.name.last;
+  document.getElementById("update-homePlanet").value = character.homePlanet;
+
+  updateCharacterForm.addEventListener("submit", () => {
+    character.name.first = document.getElementById("update-first-name").value;
+    character.name.middle = document.getElementById("update-middle-name").value;
+    character.name.last = document.getElementById("update-last-name").value;
+    character.homePlanet = document.getElementById("update-homePlanet").value;
 
     localStorage.setItem("characters", JSON.stringify(characters));
   });
@@ -183,6 +206,7 @@ function goBackToCharacterPageFromUpdateCharacter() {
   DOM_ELEMENT.updateCharacterBackButton.addEventListener("click", () => {
     DOM_ELEMENT.updateCharacterPage.style.display = "none";
     DOM_ELEMENT.characterPage.style.display = "flex";
+    DOM_ELEMENT.updateCharacterFormDiv.innerHTML = "";
   });
 }
 
@@ -203,7 +227,13 @@ function createCharacterDeleteButton(character, buttonDiv) {
 
 //Deletes character when "Delete" button is clicked
 function deleteCharacter(character) {
-  DOM_ELEMENT.deleteCharacterButton.addEventListener("click", () => {
+  const deleteCharacterButton = document.createElement("button");
+  deleteCharacterButton.textContent = "Delete";
+  deleteCharacterButton.classList.add("delete-button");
+  deleteCharacterButton.setAttribute("id", "delete-character-button");
+  DOM_ELEMENT.deleteCharacterButtonDiv.appendChild(deleteCharacterButton);
+
+  deleteCharacterButton.addEventListener("click", () => {
     let indexToDelete = characters.findIndex((c) => c.id === character.id);
     characters.splice(indexToDelete, 1);
 
@@ -217,6 +247,7 @@ function goBackToCharacterPageFromDeleteCharacter(buttonDiv) {
   DOM_ELEMENT.deleteCharacterBackButton.addEventListener("click", () => {
     DOM_ELEMENT.deleteCharacterPage.style.display = "none";
     buttonDiv.style.display = "block";
+    DOM_ELEMENT.deleteCharacterButtonDiv.innerHTML = "";
   });
 }
 
@@ -247,38 +278,32 @@ function showFirstPage() {
 DOM_ELEMENT.createCharacterButton.addEventListener("click", () => {
   hideFirstPage();
   DOM_ELEMENT.createCharacterPage.style.display = "flex";
-  createCharacter();
-  goBackToMainPageFromCreateCharacter();
 });
 
 //"Create character" form: creates a new character
-function createCharacter() {
-  DOM_ELEMENT.characterCreateForm.addEventListener("submit", async () => {
-    const newFirstName = DOM_ELEMENT.characterFirstName.value; //lägg till eventuell säkerhet här senare
-    const newMiddleName = DOM_ELEMENT.characterMiddleName.value;
-    const newLastName = DOM_ELEMENT.characterLastName.value;
-    const newHomePlanet = DOM_ELEMENT.characterHomePlanet.value; //lägg till eventuell säkerhet här senare
+DOM_ELEMENT.characterCreateForm.addEventListener("submit", async () => {
+  const newFirstName = DOM_ELEMENT.characterFirstName.value; //lägg till eventuell säkerhet här senare
+  const newMiddleName = DOM_ELEMENT.characterMiddleName.value;
+  const newLastName = DOM_ELEMENT.characterLastName.value;
+  const newHomePlanet = DOM_ELEMENT.characterHomePlanet.value; //lägg till eventuell säkerhet här senare
 
-    const newCharacter = {
-      age: "",
-      gender: "",
-      homePlanet: newHomePlanet,
-      id: characters[characters.length - 1].id + 1,
-      images: {},
-      name: { first: newFirstName, middle: newMiddleName, last: newLastName },
-      occupation: "",
-      sayings: [],
-      species: "",
-    };
-    characters.push(newCharacter);
-    localStorage.setItem("characters", JSON.stringify(characters));
-  });
-}
+  const newCharacter = {
+    age: "",
+    gender: "",
+    homePlanet: newHomePlanet,
+    id: characters[characters.length - 1].id + 1,
+    images: {},
+    name: { first: newFirstName, middle: newMiddleName, last: newLastName },
+    occupation: "",
+    sayings: [],
+    species: "",
+  };
+  characters.push(newCharacter);
+  localStorage.setItem("characters", JSON.stringify(characters));
+});
 
 //"Back to main page" button on "Create new character" page: displays first page
-function goBackToMainPageFromCreateCharacter() {
-  DOM_ELEMENT.characterCreateBackButton.addEventListener("click", () => {
-    showFirstPage();
-  });
-}
+DOM_ELEMENT.characterCreateBackButton.addEventListener("click", () => {
+  showFirstPage();
+});
 //******************************************************/Create new character*******************************************************************/

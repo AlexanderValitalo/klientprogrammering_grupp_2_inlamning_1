@@ -5,15 +5,14 @@ let episodes; // Holds all current episodes locally
 // After that we build the table and populate it with the episodes
 (async () => {
   if (localStorage.getItem("episodes") === null) {
-    localStorage.setItem("episodes", JSON.stringify(await API.getEpisodes()));
-
-    episodes = await JSON.parse(localStorage.getItem("episodes"));
+    episodes = await API.getEpisodes();
 
     // Because the API numbers and order of episodes are weird, we need to calc over all episode number, sort the episodes and calc season number
     calcOverAllNumber();
     sortEpisodes();
     calcSeasonNumber();
     calcEpisodeNumber();
+    localStorage.setItem("episodes", JSON.stringify(episodes));
   } else {
     episodes = await JSON.parse(localStorage.getItem("episodes"));
   }
@@ -36,8 +35,7 @@ function sortEpisodes() {
     currentIndex--;
 
     if (
-      episodes[currentIndex].overAllEpisodeNumber <
-      episodes[currentIndex - 1].overAllEpisodeNumber
+      episodes[currentIndex].overAllEpisodeNumber < episodes[currentIndex - 1].overAllEpisodeNumber
     ) {
       [episodes[currentIndex], episodes[currentIndex - 1]] = [
         episodes[currentIndex - 1],
@@ -133,9 +131,6 @@ function createEditEpisodeButton(episode) {
   editEpisodeButton.addEventListener("click", () => {
     DOM_ELEMENT.episodePage.style.display = "none";
     DOM_ELEMENT.updateEpisodePage.style.display = "flex";
-    DOM_ELEMENT.updateTitle.value = episode.title;
-    DOM_ELEMENT.updateSeason.value = episode.season;
-    DOM_ELEMENT.updateEpisodeNumber.value = episode.seasonEpisode;
     updateEpisode(episode);
     goBackToEpisodePageFromUpdateEpisode();
   });
@@ -145,10 +140,46 @@ function createEditEpisodeButton(episode) {
 
 // Updates episode when "Edit episode" form is submitted
 function updateEpisode(episode) {
-  DOM_ELEMENT.updateEpisodeForm.addEventListener("submit", () => {
-    episode.title = DOM_ELEMENT.updateTitle.value;
-    episode.season = DOM_ELEMENT.updateSeason.value;
-    episode.seasonEpisode = DOM_ELEMENT.updateEpisodeNumber.value;
+  const updateEpisodeForm = document.createElement("form");
+  updateEpisodeForm.setAttribute("id", "update-episode-form");
+  updateEpisodeForm.innerHTML = `
+                                  <label for="update-title">Title:</label><br />
+                                  <input
+                                    type="text"
+                                    id="update-title"
+                                    name="update-title"
+                                    placeholder="Type title here"
+                                  /><br />
+
+                                  <label for="update-season">Season:</label><br />
+                                  <input
+                                    type="number"
+                                    id="update-season"
+                                    name="update-season"
+                                    placeholder="Type season number here"
+                                  /><br />
+
+                                  <label for="update-episode">Episode:</label><br />
+                                  <input
+                                    type="number"
+                                    id="update-episode"
+                                    name="update-episode"
+                                    placeholder="Type episode number here"
+                                  /><br />
+
+                                  <button type="submit" class="submit-button">Update episode</button>
+                                `;
+
+  DOM_ELEMENT.updateEpisodeFormDiv.appendChild(updateEpisodeForm);
+
+  document.getElementById("update-title").value = episode.title;
+  document.getElementById("update-season").value = episode.season;
+  document.getElementById("update-episode").value = episode.seasonEpisode;
+
+  updateEpisodeForm.addEventListener("submit", () => {
+    episode.title = document.getElementById("update-title").value;
+    episode.season = document.getElementById("update-season").value;
+    episode.seasonEpisode = document.getElementById("update-episode").value;
 
     localStorage.setItem("episodes", JSON.stringify(episodes));
   });
@@ -159,6 +190,7 @@ function goBackToEpisodePageFromUpdateEpisode() {
   DOM_ELEMENT.updateEpisodeBackButton.addEventListener("click", () => {
     DOM_ELEMENT.updateEpisodePage.style.display = "none";
     DOM_ELEMENT.episodePage.style.display = "flex";
+    DOM_ELEMENT.updateEpisodeFormDiv.innerHTML = "";
   });
 }
 
@@ -179,7 +211,13 @@ function createEpisodeDeleteButton(episode, buttonDiv) {
 
 //Deletes episode when "Delete" button is clicked
 function deleteEpisode(episode) {
-  DOM_ELEMENT.deleteEpisodeButton.addEventListener("click", () => {
+  const deleteEpisodeButton = document.createElement("button");
+  deleteEpisodeButton.textContent = "Delete";
+  deleteEpisodeButton.classList.add("delete-button");
+  deleteEpisodeButton.setAttribute("id", "delete-episode-button");
+  DOM_ELEMENT.deleteEpisodeButtonDiv.appendChild(deleteEpisodeButton);
+
+  deleteEpisodeButton.addEventListener("click", () => {
     let indexToDelete = episodes.findIndex((e) => e.id === episode.id);
     episodes.splice(indexToDelete, 1);
 
@@ -193,6 +231,7 @@ function goBackToEpisodePageFromDeleteEpisode(buttonDiv) {
   DOM_ELEMENT.deleteEpisodeBackButton.addEventListener("click", () => {
     DOM_ELEMENT.deleteEpisodePage.style.display = "none";
     buttonDiv.style.display = "block";
+    DOM_ELEMENT.deleteEpisodeButtonDiv.innerHTML = "";
   });
 }
 
@@ -223,38 +262,31 @@ function showSecondPage() {
 DOM_ELEMENT.createEpisodeButton.addEventListener("click", () => {
   hideSecondPage();
   DOM_ELEMENT.createEpisodePage.style.display = "flex";
-  createEpisode();
-  goBackToMainPageFromCreateEpisode();
 });
 
 //"Create episode" form: creates a new episode
-function createEpisode() {
-  DOM_ELEMENT.episodeCreateForm.addEventListener("submit", async () => {
-    const newTitle = DOM_ELEMENT.episodeTitle.value; //lägg till eventuell säkerhet här senare
-    const newSeason = DOM_ELEMENT.episodeSeason.value;
-    const newEpisodeNumber = DOM_ELEMENT.episodeNumber.value;
-    const newOverAllEpisodeNumber =
-      episodes[episodes.length - 1].overAllEpisodeNumber + 1;
+DOM_ELEMENT.episodeCreateForm.addEventListener("submit", async () => {
+  const newTitle = DOM_ELEMENT.episodeTitle.value; //lägg till eventuell säkerhet här senare
+  const newSeason = DOM_ELEMENT.episodeSeason.value;
+  const newEpisodeNumber = DOM_ELEMENT.episodeNumber.value;
+  const newOverAllEpisodeNumber = episodes[episodes.length - 1].overAllEpisodeNumber + 1;
 
-    const newEpisode = {
-      desc: "",
-      id: episodes[episodes.length - 1].id + 1,
-      number: `${newOverAllEpisodeNumber} - ${newEpisodeNumber}`,
-      originalAirDate: "",
-      overAllEpisodeNumber: newOverAllEpisodeNumber,
-      season: newSeason,
-      seasonEpisode: newEpisodeNumber,
-      title: newTitle,
-      writers: "",
-    };
-    episodes.push(newEpisode);
-    localStorage.setItem("episodes", JSON.stringify(episodes));
-  });
-}
+  const newEpisode = {
+    desc: "",
+    id: episodes[episodes.length - 1].id + 1,
+    number: `${newOverAllEpisodeNumber} - ${newEpisodeNumber}`,
+    originalAirDate: "",
+    overAllEpisodeNumber: newOverAllEpisodeNumber,
+    season: newSeason,
+    seasonEpisode: newEpisodeNumber,
+    title: newTitle,
+    writers: "",
+  };
+  episodes.push(newEpisode);
+  localStorage.setItem("episodes", JSON.stringify(episodes));
+});
 
 //"Back to main page" button on "Create new episode" page: displays first page
-function goBackToMainPageFromCreateEpisode() {
-  DOM_ELEMENT.episodeCreateBackButton.addEventListener("click", () => {
-    showSecondPage();
-  });
-}
+DOM_ELEMENT.episodeCreateBackButton.addEventListener("click", () => {
+  showSecondPage();
+});

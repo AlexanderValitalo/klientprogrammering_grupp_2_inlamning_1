@@ -20,16 +20,12 @@ const DOM_ELEMENT = {
 
   //Elements from Update Character page
   updateCharacterPage: document.getElementById("update-character-page"),
-  updateCharacterForm: document.getElementById("update-character-form"),
-  updateFirstName: document.getElementById("update-first-name"),
-  updateMiddleName: document.getElementById("update-middle-name"),
-  updateLastName: document.getElementById("update-last-name"),
-  updateHomePlanet: document.getElementById("update-homePlanet"),
+  updateCharacterFormDiv: document.getElementById("update-character-form-div"),
   updateCharacterBackButton: document.getElementById("update-character-back-button"),
 
   //Elements from Delete Character page
   deleteCharacterPage: document.getElementById("delete-character-page"),
-  deleteCharacterButton: document.getElementById("delete-character-button"),
+  deleteCharacterButtonDiv: document.getElementById("delete-character-button-div"),
   deleteCharacterBackButton: document.getElementById("delete-character-back-button"),
 
   //--------------------------------------------EPISODES-----------------------------------------------
@@ -48,14 +44,11 @@ const DOM_ELEMENT = {
 
   //Elements from Update Episode page
   updateEpisodePage: document.getElementById("update-episode-page"),
-  updateEpisodeForm: document.getElementById("update-episode-form"),
-  updateTitle: document.getElementById("update-title"),
-  updateSeason: document.getElementById("update-season"),
-  updateEpisodeNumber: document.getElementById("update-episode"),
+  updateEpisodeFormDiv: document.getElementById("update-episode-form-div"),
   updateEpisodeBackButton: document.getElementById("update-episode-back-button"),
 
   //Elements from Delete Episode page
   deleteEpisodePage: document.getElementById("delete-episode-page"),
-  deleteEpisodeButton: document.getElementById("delete-episode-button"),
+  deleteEpisodeButtonDiv: document.getElementById("delete-episode-button-div"),
   deleteEpisodeBackButton: document.getElementById("delete-episode-back-button"),
 };
