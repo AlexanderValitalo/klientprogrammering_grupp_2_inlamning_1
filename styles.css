@@ -12,7 +12,7 @@ body {
 h1 {
   text-align: center;
   margin-top: 20px;
-  font-size: 36px;
+  font-size: 50px;
 }
 
 /* Stil för knappar */
@@ -252,16 +252,17 @@ th {
 /* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
 #create-character-page button.back-button {
   padding: 10px 20px;
-  background-color: #ccc;
-  color: #333;
-  border: none;
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #create-character-page button.back-button:hover {
-  background-color: #999;
+  background-color: #007bff;
+  color: #fff;
 }
 
 /*---------------------------------------------------------First Page Update Character----------------------------------------------------------*/
@@ -558,16 +559,17 @@ th {
 /* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
 #create-episode-page button.back-button {
   padding: 10px 20px;
-  background-color: #ccc;
-  color: #333;
-  border: none;
+  background-color: transparent;
+  color: #00cc99;
+  border: 1px solid #00cc99;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #create-episode-page button.back-button:hover {
-  background-color: #999;
+  background-color: #00cc99;
+  color: #fff;
 }
 
 /*---------------------------------------------------------Second Page Update Episode----------------------------------------------------------*/
