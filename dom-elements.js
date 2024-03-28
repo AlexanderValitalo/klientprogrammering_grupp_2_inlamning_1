@@ -1,4 +1,5 @@
 const DOM_ELEMENT = {
+  toggleButtonDiv: document.getElementById("toggle-buttons"),
   charactersStart: document.getElementById("characters-start"),
   episodesStart: document.getElementById("episodes-start"),
 
@@ -14,9 +15,7 @@ const DOM_ELEMENT = {
   characterMiddleName: document.getElementById("character-middle-name"),
   characterLastName: document.getElementById("character-last-name"),
   characterHomePlanet: document.getElementById("character-homePlanet"),
-  characterCreateBackButton: document.getElementById(
-    "character-create-back-button"
-  ),
+  characterCreateBackButton: document.getElementById("character-create-back-button"),
   characterCreateForm: document.getElementById("create-character-form"),
 
   //Elements from Update Character page
@@ -26,16 +25,12 @@ const DOM_ELEMENT = {
   updateMiddleName: document.getElementById("update-middle-name"),
   updateLastName: document.getElementById("update-last-name"),
   updateHomePlanet: document.getElementById("update-homePlanet"),
-  updateCharacterBackButton: document.getElementById(
-    "update-character-back-button"
-  ),
+  updateCharacterBackButton: document.getElementById("update-character-back-button"),
 
   //Elements from Delete Character page
   deleteCharacterPage: document.getElementById("delete-character-page"),
   deleteCharacterButton: document.getElementById("delete-character-button"),
-  deleteCharacterBackButton: document.getElementById(
-    "delete-character-back-button"
-  ),
+  deleteCharacterBackButton: document.getElementById("delete-character-back-button"),
 
   //--------------------------------------------EPISODES-----------------------------------------------
   secondPage: document.getElementById("second-page"),
@@ -48,9 +43,7 @@ const DOM_ELEMENT = {
   episodeTitle: document.getElementById("title"),
   episodeSeason: document.getElementById("season"),
   episodeNumber: document.getElementById("episode"),
-  episodeCreateBackButton: document.getElementById(
-    "episode-create-back-button"
-  ),
+  episodeCreateBackButton: document.getElementById("episode-create-back-button"),
   episodeCreateForm: document.getElementById("create-episode-form"),
 
   //Elements from Update Episode page
@@ -59,14 +52,10 @@ const DOM_ELEMENT = {
   updateTitle: document.getElementById("update-title"),
   updateSeason: document.getElementById("update-season"),
   updateEpisodeNumber: document.getElementById("update-episode"),
-  updateEpisodeBackButton: document.getElementById(
-    "update-episode-back-button"
-  ),
+  updateEpisodeBackButton: document.getElementById("update-episode-back-button"),
 
   //Elements from Delete Episode page
   deleteEpisodePage: document.getElementById("delete-episode-page"),
   deleteEpisodeButton: document.getElementById("delete-episode-button"),
-  deleteEpisodeBackButton: document.getElementById(
-    "delete-episode-back-button"
-  ),
+  deleteEpisodeBackButton: document.getElementById("delete-episode-back-button"),
 };

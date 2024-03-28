@@ -5,10 +5,7 @@ let characters; // Holds all current characters locally
 // After that we build the table and populate it with the characters
 (async () => {
   if (localStorage.getItem("characters") === null) {
-    localStorage.setItem(
-      "characters",
-      JSON.stringify(await API.getCharacters())
-    );
+    localStorage.setItem("characters", JSON.stringify(await API.getCharacters()));
   }
 
   characters = await JSON.parse(localStorage.getItem("characters"));
@@ -51,15 +48,11 @@ function displayCharacter(character) {
 
   DOM_ELEMENT.characterPage.innerHTML = `
   <h2>${displayName}</h2>
-  <img src="${
-    character.images.main
-  }" alt="A picture of ${displayName}" style="${
+  <img src="${character.images.main}" alt="A picture of ${displayName}" style="${
     character.images.main === undefined ? "display: none;" : "display: flex;"
   }">
   <p>Home planet: ${character.homePlanet}</p>
-  <p>Occupation: ${
-    character.occupation === "" ? "Unknown" : character.occupation
-  }</p>
+  <p>Occupation: ${character.occupation === "" ? "Unknown" : character.occupation}</p>
   `;
 
   getRandomSayings(character);
@@ -70,6 +63,7 @@ function displayCharacter(character) {
 // Hide first page
 function hideFirstPage() {
   DOM_ELEMENT.firstPage.style.display = "none";
+  DOM_ELEMENT.toggleButtonDiv.style.display = "none";
 }
 
 //Randomize and display 5 character sayings (or all sayings, if there are fewer than 5)
@@ -86,15 +80,11 @@ function getRandomSayings(character) {
     return;
   } else if (numberOfSayingsOnCharacter <= sayingsToDisplay) {
     let sayingText;
-    numberOfSayingsOnCharacter === 1
-      ? (sayingText = "Saying:")
-      : (sayingText = "Sayings:");
+    numberOfSayingsOnCharacter === 1 ? (sayingText = "Saying:") : (sayingText = "Sayings:");
     characterSayings = `
                         <p>${sayingText}</p>
                         <ul>`;
-    character.sayings.forEach(
-      (saying) => (characterSayings += `<li>${saying}</li>`)
-    );
+    character.sayings.forEach((saying) => (characterSayings += `<li>${saying}</li>`));
   } else if (numberOfSayingsOnCharacter > sayingsToDisplay) {
     let randomizedSayings = randomizeArray(character.sayings);
 
@@ -119,10 +109,7 @@ function randomizeArray(array) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
 }
@@ -132,13 +119,10 @@ function characterCRUDButtons(character) {
   const buttonDiv = document.createElement("div");
   DOM_ELEMENT.characterPage.appendChild(buttonDiv);
 
-  const editCharacterButton = createEditEpisodeButton(character);
+  const editCharacterButton = createEditCharacterButton(character);
   buttonDiv.appendChild(editCharacterButton);
 
-  const characterDeleteButton = createCharacterDeleteButton(
-    character,
-    buttonDiv
-  );
+  const characterDeleteButton = createCharacterDeleteButton(character, buttonDiv);
   buttonDiv.appendChild(characterDeleteButton);
 
   const backButton = goBackToMainPageFromCharacterPage();
@@ -147,7 +131,7 @@ function characterCRUDButtons(character) {
 
 //******************************************************Character Button functions*************************************************************************/
 //Creates the "Edit character" button that displays the update form
-function createEditEpisodeButton(character) {
+function createEditCharacterButton(character) {
   const editCharacterButton = document.createElement("button");
   editCharacterButton.textContent = "Edit Character";
   editCharacterButton.classList.add("edit-button");
@@ -238,6 +222,7 @@ function showFirstPage() {
   DOM_ELEMENT.createCharacterPage.style.display = "none";
   DOM_ELEMENT.characterPage.innerHTML = "";
   DOM_ELEMENT.characterPage.style.display = "none";
+  DOM_ELEMENT.toggleButtonDiv.style.display = "flex";
 }
 
 //******************************************************Create new character********************************************************************/
@@ -246,6 +231,7 @@ DOM_ELEMENT.createCharacterButton.addEventListener("click", () => {
   hideFirstPage();
   DOM_ELEMENT.createCharacterPage.style.display = "flex";
   createCharacter();
+  goBackToMainPageFromCreateCharacter();
 });
 
 //"Create character" form: creates a new character
@@ -273,7 +259,9 @@ function createCharacter() {
 }
 
 //"Back to main page" button on "Create new character" page: displays first page
-DOM_ELEMENT.characterCreateBackButton.addEventListener("click", () => {
-  showFirstPage();
-});
+function goBackToMainPageFromCreateCharacter() {
+  DOM_ELEMENT.characterCreateBackButton.addEventListener("click", () => {
+    showFirstPage();
+  });
+}
 //******************************************************/Create new character*******************************************************************/

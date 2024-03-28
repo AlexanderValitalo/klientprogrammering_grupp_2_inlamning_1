@@ -1,3 +1,4 @@
+/*---------------------------------------------------------Futurama Application Generell stil----------------------------------------------------------*/
 /* Generell stil för hela sidan */
 body {
   font-family: "Arial", sans-serif;
@@ -25,6 +26,22 @@ button {
   transition: background-color 0.3s ease;
 }
 
+.episode-info-btn {
+  padding: 10px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.episode-info-btn button:hover {
+  background-color: #007a5e;
+}
+
+/*---------------------------------------------------------First/Second Page Toggle-button----------------------------------------------------------*/
+
 /* Stil för knappar i toggle-buttons */
 #toggle-buttons {
   display: flex;
@@ -45,6 +62,21 @@ button {
 
 #toggle-buttons button:hover {
   background-color: #0056b3;
+}
+
+#toggle-buttons > #episodes-start {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#toggle-buttons > #episodes-start button:hover {
+  background-color: #007a5e;
 }
 
 /*---------------------------------------------------------First Page Characters----------------------------------------------------------*/
@@ -95,6 +127,78 @@ th {
 #characters-table td:last-child {
   text-align: center;
 }
+
+/*---------------------------------------------------------First Page Character Info----------------------------------------------------------*/
+
+#character-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#character-page h2 {
+  margin-bottom: 10px;
+}
+
+#character-page img {
+  max-width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#character-page p {
+  margin-bottom: 5px;
+}
+
+#character-page ul {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#character-page button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#character-page button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button,
+.delete-button,
+.back-button {
+  margin-top: 20px;
+}
+
+#character-page button.delete-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#character-page button.delete-button:hover {
+  background-color: #cc0000;
+}
+
+/*---------------------------------------------------------First Page Create Characters----------------------------------------------------------*/
 
 /* Stil för sidan för att skapa karaktärer */
 #create-character-page {
@@ -160,115 +264,7 @@ th {
   background-color: #999;
 }
 
-#character-page {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#character-page h2 {
-  margin-bottom: 10px;
-}
-
-#character-page img {
-  max-width: 100%;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-#character-page p {
-  margin-bottom: 5px;
-}
-
-#character-page ul {
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-#character-page button {
-  padding: 10px 20px;
-  margin: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#character-page button:hover {
-  background-color: #0056b3;
-}
-
-.edit-button,
-.delete-button,
-.back-button {
-  margin-top: 20px;
-}
-
-#character-page button.delete-button {
-  padding: 10px 20px;
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-#character-page button.delete-button:hover {
-  background-color: #cc0000;
-}
-
-#delete-character-page {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-#delete-character-page h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-#delete-character-page h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-#delete-character-page button#delete-character-button {
-  padding: 10px 20px;
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
-}
-
-#delete-character-page button#delete-character-button:hover {
-  background-color: #cc0000;
-}
+/*---------------------------------------------------------First Page Update Character----------------------------------------------------------*/
 
 #update-character-page {
   flex-direction: column;
@@ -332,6 +328,50 @@ th {
   color: #fff;
 }
 
+/*---------------------------------------------------------First Page Delete Character----------------------------------------------------------*/
+
+#delete-character-page {
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+#delete-character-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#delete-character-page h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#delete-character-page button#delete-character-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+#delete-character-page button#delete-character-button:hover {
+  background-color: #cc0000;
+}
+
 /*---------------------------------------------------------Second Page Episodes----------------------------------------------------------*/
 
 /* Stil för andra sidan */
@@ -357,7 +397,7 @@ th {
 /* Stil för knappen "Create new episode" */
 #create-episode-btn {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #00cc99;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -366,7 +406,7 @@ th {
 }
 
 #create-episode-btn:hover {
-  background-color: #0056b3;
+  background-color: #007a5e;
 }
 
 /* Stil för tabeller */
@@ -392,6 +432,8 @@ th {
   text-align: center;
 }
 
+/*---------------------------------------------------------Second Page Episode Info----------------------------------------------------------*/
+
 #episode-page {
   flex-direction: column;
   align-items: center;
@@ -405,7 +447,64 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil för sidan för att skapa karaktärer */
+#episode-page h2 {
+  margin-bottom: 10px;
+}
+
+#episode-page img {
+  max-width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#episode-page p {
+  margin-bottom: 5px;
+}
+
+#episode-page ul {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#episode-page button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#episode-page button:hover {
+  background-color: #007a5e;
+}
+
+.edit-button,
+.delete-button,
+.back-button {
+  margin-top: 20px;
+}
+
+#episode-page button.delete-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#episode-page button.delete-button:hover {
+  background-color: #cc0000;
+}
+
+/*---------------------------------------------------------Second Page Create Episode----------------------------------------------------------*/
+
+/* Stil för sidan för att skapa episodes */
 #create-episode-page {
   flex-direction: column;
   align-items: center;
@@ -419,10 +518,173 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Stil för rubriken på sidan för att skapa karaktärer */
+#create-episode-page h2 {
+  margin-bottom: 20px;
+}
+
+/* Stil för formuläret på sidan för att skapa karaktärer */
+#create-episode-page form {
+  margin-bottom: 20px;
+}
+
+/* Stil för etiketterna i formuläret på sidan för att skapa karaktärer */
+#create-episode-page form label {
+  margin-bottom: 5px;
+}
+
+/* Stil för inputfälten i formuläret på sidan för att skapa karaktärer */
+#create-episode-page form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Stil för skapaknappen på sidan för att skapa karaktärer */
+#create-episode-page form button.submit-button {
+  padding: 10px 20px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
+#create-episode-page button.back-button {
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#create-episode-page button.back-button:hover {
+  background-color: #999;
+}
+
+/*---------------------------------------------------------Second Page Update Episode----------------------------------------------------------*/
+
+#update-episode-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#update-episode-page h2 {
+  margin-bottom: 20px;
+}
+
+#update-episode-page form {
+  margin-bottom: 20px;
+}
+
+#update-episode-page form label {
+  margin-bottom: 5px;
+}
+
+#update-episode-page form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#update-episode-page form button.submit-button {
+  padding: 10px 20px;
+  background-color: #00cc99;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-episode-page form button.submit-button:hover {
+  background-color: #007a5e;
+}
+
+#update-episode-page button.back-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #00cc99;
+  border: 1px solid #00cc99;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-episode-page button.back-button:hover {
+  background-color: #00cc99;
+  color: #fff;
+}
+
+/*---------------------------------------------------------Second Page Delete Episode----------------------------------------------------------*/
+
+#delete-episode-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+#delete-episode-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#delete-episode-page h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#delete-episode-page button#delete-episode-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+#delete-episode-page button#delete-episode-button:hover {
+  background-color: #cc0000;
+}
+
+/*---------------------------------------------------------Display Page None----------------------------------------------------------*/
+
 #create-character-page,
 #update-character-page,
 #delete-character-page,
 #character-page,
-#second-page {
+#second-page,
+#create-episode-page,
+#update-episode-page,
+#delete-episode-page,
+#episode-page {
   display: none;
 }
