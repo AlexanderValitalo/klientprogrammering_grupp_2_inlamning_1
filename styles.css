@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
 /*---------------------------------------------------------Futurama Application Generell stil----------------------------------------------------------*/
 /* Generell stil för hela sidan */
 body {
@@ -10,9 +11,17 @@ body {
 
 /* Stil för rubriker */
 h1 {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
   text-align: center;
   margin-top: 20px;
-  font-size: 50px;
+  margin-bottom: 20px;
+  font-size: 80px;
 }
 
 /* Stil för knappar */
@@ -85,7 +94,11 @@ button {
 #first-page {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 10px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Stil för karaktärshuvudet */
@@ -114,12 +127,8 @@ table {
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
 }
 
 /* Stil för sista kolumnen i tabellen */
@@ -156,6 +165,7 @@ th {
 
 #character-page p {
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 #character-page ul {
@@ -181,7 +191,7 @@ th {
 .edit-button,
 .delete-button,
 .back-button {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 #character-page button.delete-button {
@@ -361,6 +371,7 @@ th {
 }
 
 #delete-character-page button#delete-character-button {
+  width: 100%;
   padding: 10px 20px;
   background-color: #ff0000;
   color: #fff;
@@ -381,7 +392,11 @@ th {
 #second-page {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 10px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Stil för episodhuvudet */
@@ -421,7 +436,7 @@ table {
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
 }
 
@@ -454,13 +469,6 @@ th {
   margin-bottom: 10px;
 }
 
-#episode-page img {
-  max-width: 100%;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
 #episode-page p {
   margin-bottom: 5px;
 }
@@ -483,12 +491,6 @@ th {
 
 #episode-page button:hover {
   background-color: #007a5e;
-}
-
-.edit-button,
-.delete-button,
-.back-button {
-  margin-top: 20px;
 }
 
 #episode-page button.delete-button {
@@ -668,6 +670,7 @@ th {
 }
 
 #delete-episode-page button#delete-episode-button {
+  width: 100%;
   padding: 10px 20px;
   background-color: #ff0000;
   color: #fff;
