@@ -1,5 +1,6 @@
-/*---------------------------------------------------------Futurama Application Generell stil----------------------------------------------------------*/
-/* Generell stil för hela sidan */
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+/*---------------------------------------------------------Futurama Application General style----------------------------------------------------------*/
+/* General style for the entire page */
 body {
   font-family: "Arial", sans-serif;
   background-color: #f0f0f0;
@@ -8,14 +9,22 @@ body {
   padding: 0;
 }
 
-/* Stil för rubriker */
+/* Style for headers */
 h1 {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
   text-align: center;
   margin-top: 20px;
-  font-size: 50px;
+  margin-bottom: 20px;
+  font-size: 80px;
 }
 
-/* Stil för knappar */
+/* Style for buttons */
 button {
   padding: 10px;
   background-color: #007bff;
@@ -26,6 +35,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
+/* Episode Info Button */
 .episode-info-btn {
   padding: 10px;
   background-color: #00cc99;
@@ -36,13 +46,14 @@ button {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for Episode Info Button */
 .episode-info-btn:hover {
   background-color: #007a5e;
 }
 
 /*---------------------------------------------------------First/Second Page Toggle-button----------------------------------------------------------*/
 
-/* Stil för knappar i toggle-buttons */
+/* Style for toggle buttons */
 #toggle-buttons {
   display: flex;
   justify-content: center;
@@ -81,14 +92,18 @@ button {
 
 /*---------------------------------------------------------First Page Characters----------------------------------------------------------*/
 
-/* Stil för första sidan */
+/* Style for the first page */
 #first-page {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 10px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil för karaktärshuvudet */
+/* Style for the character header */
 #character-header {
   display: flex;
   justify-content: space-between;
@@ -96,16 +111,17 @@ button {
   margin-bottom: 20px;
 }
 
-/* Stil för rubriken "Characters" */
+/* Style for the "Characters" heading */
 #character-header h2 {
   font-size: 24px;
 }
 
-/* Stil för tabeller */
+/* Hover effect for buttons */
 button:hover {
   background-color: #0056b3;
 }
 
+/* Style for tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -114,15 +130,11 @@ table {
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
 }
 
-th {
-  background-color: #f2f2f2;
-}
-
-/* Stil för sista kolumnen i tabellen */
+/* Style for the last column in the table */
 #characters-table th:last-child,
 #characters-table td:last-child {
   text-align: center;
@@ -130,6 +142,7 @@ th {
 
 /*---------------------------------------------------------First Page Character Info----------------------------------------------------------*/
 
+/* Style for the character page */
 #character-page {
   flex-direction: column;
   align-items: center;
@@ -143,6 +156,7 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Style for the heading on the page to character info */
 #character-page h2 {
   margin-bottom: 10px;
 }
@@ -156,6 +170,7 @@ th {
 
 #character-page p {
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 #character-page ul {
@@ -181,7 +196,7 @@ th {
 .edit-button,
 .delete-button,
 .back-button {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 #character-page button.delete-button {
@@ -200,7 +215,7 @@ th {
 
 /*---------------------------------------------------------First Page Create Characters----------------------------------------------------------*/
 
-/* Stil för sidan för att skapa karaktärer */
+/* Style for the page to create characters */
 #create-character-page {
   flex-direction: column;
   align-items: center;
@@ -214,22 +229,22 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil för rubriken på sidan för att skapa karaktärer */
+/* Style for the heading on the page to create characters */
 #create-character-page h2 {
   margin-bottom: 20px;
 }
 
-/* Stil för formuläret på sidan för att skapa karaktärer */
+/* Style for the form on the page to create characters */
 #create-character-page form {
   margin-bottom: 20px;
 }
 
-/* Stil för etiketterna i formuläret på sidan för att skapa karaktärer */
+/* Style for the labels in the form on the page to create characters */
 #create-character-page form label {
   margin-bottom: 5px;
 }
 
-/* Stil för inputfälten i formuläret på sidan för att skapa karaktärer */
+/* Style for the input fields in the form on the page to create characters */
 #create-character-page form input {
   width: 100%;
   padding: 10px;
@@ -238,7 +253,7 @@ th {
   border-radius: 5px;
 }
 
-/* Stil för skapaknappen på sidan för att skapa karaktärer */
+/* Style for the create button on the page to create characters */
 #create-character-page form button.submit-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -249,7 +264,7 @@ th {
   transition: background-color 0.3s ease;
 }
 
-/* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
+/* Style for the back button on the page to create characters */
 #create-character-page button.back-button {
   padding: 10px 20px;
   background-color: transparent;
@@ -267,6 +282,7 @@ th {
 
 /*---------------------------------------------------------First Page Update Character----------------------------------------------------------*/
 
+/* Style for the page to update characters */
 #update-character-page {
   flex-direction: column;
   align-items: center;
@@ -280,18 +296,22 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Style for the heading on the page to update characters */
 #update-character-page h2 {
   margin-bottom: 20px;
 }
 
+/* Style for the form on the page to update characters */
 #update-character-page form {
   margin-bottom: 20px;
 }
 
+/* Style for the labels in the form on the page to update characters */
 #update-character-page form label {
   margin-bottom: 5px;
 }
 
+/* Style for the input fields in the form on the page to update characters */
 #update-character-page form input {
   width: 100%;
   padding: 10px;
@@ -300,6 +320,7 @@ th {
   border-radius: 5px;
 }
 
+/* Style for the submit button on the page to update characters */
 #update-character-page form button.submit-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -310,10 +331,12 @@ th {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for the submit button on the page to update characters */
 #update-character-page form button.submit-button:hover {
   background-color: #0056b3;
 }
 
+/* Style for the back button on the page to update characters */
 #update-character-page button.back-button {
   padding: 10px 20px;
   background-color: transparent;
@@ -324,6 +347,7 @@ th {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for the back button on the page to update characters */
 #update-character-page button.back-button:hover {
   background-color: #007bff;
   color: #fff;
@@ -331,6 +355,7 @@ th {
 
 /*---------------------------------------------------------First Page Delete Character----------------------------------------------------------*/
 
+/* Style for the page to delete characters */
 #delete-character-page {
   flex-direction: column;
   justify-content: center;
@@ -361,6 +386,7 @@ th {
 }
 
 #delete-character-page button#delete-character-button {
+  width: 100%;
   padding: 10px 20px;
   background-color: #ff0000;
   color: #fff;
@@ -377,14 +403,18 @@ th {
 
 /*---------------------------------------------------------Second Page Episodes----------------------------------------------------------*/
 
-/* Stil för andra sidan */
+/* Style for the second page */
 #second-page {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 10px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil för episodhuvudet */
+/* Style for the episode header */
 #episode-header {
   display: flex;
   justify-content: space-between;
@@ -392,12 +422,12 @@ th {
   margin-bottom: 20px;
 }
 
-/* Stil för rubriken "Episodes" */
+/* Style for the "Episodes" heading */
 #episode-header h2 {
   font-size: 24px;
 }
 
-/* Stil för knappen "Create new episode" */
+/* Style for the "Create new episode" button */
 #create-episode-btn {
   padding: 10px 20px;
   background-color: #00cc99;
@@ -408,11 +438,12 @@ th {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for the "Create new episode" button */
 #create-episode-btn:hover {
   background-color: #007a5e;
 }
 
-/* Stil för tabeller */
+/* Style for tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -421,7 +452,7 @@ table {
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
 }
 
@@ -429,7 +460,7 @@ th {
   background-color: #f2f2f2;
 }
 
-/* Stil för sista kolumnen i tabellen */
+/* Style for the last column in the table */
 #episodes-table th:last-child,
 #episodes-table td:last-child {
   text-align: center;
@@ -437,6 +468,7 @@ th {
 
 /*---------------------------------------------------------Second Page Episode Info----------------------------------------------------------*/
 
+/* Style for the page episode info */
 #episode-page {
   flex-direction: column;
   align-items: center;
@@ -452,13 +484,6 @@ th {
 
 #episode-page h2 {
   margin-bottom: 10px;
-}
-
-#episode-page img {
-  max-width: 100%;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
 }
 
 #episode-page p {
@@ -485,12 +510,6 @@ th {
   background-color: #007a5e;
 }
 
-.edit-button,
-.delete-button,
-.back-button {
-  margin-top: 20px;
-}
-
 #episode-page button.delete-button {
   padding: 10px 20px;
   background-color: #ff0000;
@@ -507,7 +526,7 @@ th {
 
 /*---------------------------------------------------------Second Page Create Episode----------------------------------------------------------*/
 
-/* Stil för sidan för att skapa episodes */
+/* Style for the page to create episodes */
 #create-episode-page {
   flex-direction: column;
   align-items: center;
@@ -521,22 +540,22 @@ th {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil för rubriken på sidan för att skapa karaktärer */
+/* Style for the heading on the page to create episodes */
 #create-episode-page h2 {
   margin-bottom: 20px;
 }
 
-/* Stil för formuläret på sidan för att skapa karaktärer */
+/* Style for the form on the page to create episodes */
 #create-episode-page form {
   margin-bottom: 20px;
 }
 
-/* Stil för etiketterna i formuläret på sidan för att skapa karaktärer */
+/* Style for the labels in the form on the page to create episodes */
 #create-episode-page form label {
   margin-bottom: 5px;
 }
 
-/* Stil för inputfälten i formuläret på sidan för att skapa karaktärer */
+/* Style for the input fields in the form on the page to create episodes */
 #create-episode-page form input {
   width: 100%;
   padding: 10px;
@@ -545,7 +564,7 @@ th {
   border-radius: 5px;
 }
 
-/* Stil för skapaknappen på sidan för att skapa karaktärer */
+/* Style for the submit button on the page to create episodes */
 #create-episode-page form button.submit-button {
   padding: 10px 20px;
   background-color: #00cc99;
@@ -556,7 +575,7 @@ th {
   transition: background-color 0.3s ease;
 }
 
-/* Stil för knappen för att gå tillbaka till huvudsidan på sidan för att skapa karaktärer */
+/* Style for the back button on the page to create episodes */
 #create-episode-page button.back-button {
   padding: 10px 20px;
   background-color: transparent;
@@ -574,6 +593,7 @@ th {
 
 /*---------------------------------------------------------Second Page Update Episode----------------------------------------------------------*/
 
+/* Style for the page to update episodes */
 #update-episode-page {
   flex-direction: column;
   align-items: center;
@@ -638,6 +658,7 @@ th {
 
 /*---------------------------------------------------------Second Page Delete Episode----------------------------------------------------------*/
 
+/* Style for the page to delete episodes */
 #delete-episode-page {
   flex-direction: column;
   justify-content: center;
@@ -668,6 +689,7 @@ th {
 }
 
 #delete-episode-page button#delete-episode-button {
+  width: 100%;
   padding: 10px 20px;
   background-color: #ff0000;
   color: #fff;
